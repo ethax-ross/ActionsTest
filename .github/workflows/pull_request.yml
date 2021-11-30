@@ -1,18 +1,17 @@
-
-name: Pull Request Test
-
+name: PR Test
 on:
   workflow_dispatch:
-  repository_dispatch:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
 
 jobs:
-  add_labels:
+  trello_test:
     runs-on: ubuntu-latest
     steps:        
       - name: Add Trello Comment 
         uses: DFE-Digital/github-actions/AddTrelloComment@link-trello-card-quote-bug-fix
         with:
-          MESSAGE:      "Test Text"
-          CARD:         "2696-fix-link-trello-card-github-action"          
-          TRELLO-KEY:   ${{ secret.TRELLO_KEY}}
-          TRELLO-TOKEN: "${{ secret.TRELLO_SECRET }}"
+          MESSAGE:      ${{ github.event.pull_request.html_url }} 
+          CARD:         "${{ github.event.pull_request.body }}"       
+          TRELLO-KEY:   ${{ secrets.TRELLO_KEY}}
+          TRELLO-TOKEN: "${{ secrets.TRELLO_SECRET }}" 
