@@ -14,4 +14,4 @@ jobs:
           MESSAGE:      ${{ github.event.pull_request.html_url }} 
           CARD:         "${{ github.event.pull_request.body }}"       
           TRELLO-KEY:   ${{ secrets.TRELLO_KEY}}
-          TRELLO-TOKEN: "${{ secrets.TRELLO_SECRET }}" 
+          TRELLO-TOKEN: "${{ secrets.TRELLO_SECRET }}"
